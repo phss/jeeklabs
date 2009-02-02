@@ -1,0 +1,28 @@
+# 
+#  Rakefile
+#  falling_stuff
+#  
+#  Created by Paulo Schneider on 2008-03-05.
+#  Copyright 2008 Jeek Labs. All rights reserved.
+# 
+
+NAME="Falling Stuff"
+JAR_NAME="fs.jar"
+BUILD_DIR="build"
+
+desc"Start game"
+task :play do
+  sh "export CLASSPATH=java_lib/slick.jar:java_lib/lwjgl.jar; jruby -J-Djava.library.path=java_lib/native_files bin/fs.rb"
+end
+
+desc "Creates a Web Start application"
+task :webstart do
+  jar_dest = "#{BUILD_DIR}/#{JAR_NAME}"
+  FileUtils.rm(jar_dest) if File.exists? jar_dest
+  
+  FileUtils.copy("java_lib/jruby.jar", "jruby.jar")
+  sh "jar uvf jruby.jar bin/ lib/ resources/"
+  FileUtils.move("jruby.jar", jar_dest)
+
+  sh "jarsigner -keystore jl_keystore build/fs.jar myself"
+end
