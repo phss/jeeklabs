@@ -1,3 +1,4 @@
+require 'rawr'
 # 
 #  Rakefile
 #  falling_stuff
@@ -12,17 +13,25 @@ BUILD_DIR="build"
 
 desc"Start game"
 task :play do
-  sh "export CLASSPATH=java_lib/slick.jar:java_lib/lwjgl.jar; jruby -J-Djava.library.path=java_lib/native_files bin/fs.rb"
+  sh "export CLASSPATH=lib/java/slick.jar:lib/java/lwjgl.jar; jruby -J-Djava.library.path=java_lib/native_files bin/fs.rb"
 end
 
-desc "Creates a Web Start application"
-task :webstart do
-  jar_dest = "#{BUILD_DIR}/#{JAR_NAME}"
-  FileUtils.rm(jar_dest) if File.exists? jar_dest
-  
-  FileUtils.copy("java_lib/jruby.jar", "jruby.jar")
-  sh "jar uvf jruby.jar bin/ lib/ resources/"
-  FileUtils.move("jruby.jar", jar_dest)
-
-  sh "jarsigner -keystore jl_keystore build/fs.jar myself"
+task :test_jar => ["rawr:clean", "rawr:jar"] do
+  sh "cd package/jar; java -Djava.library.path=java/lib/native_files -jar FS.jar"
 end
+
+task :test_app => ["rawr:clean", "rawr:bundle:app"] do
+  sh "open package/osx/Test.app"
+end
+
+# desc "Creates a Web Start application"
+# task :webstart do
+#   jar_dest = "#{BUILD_DIR}/#{JAR_NAME}"
+#   FileUtils.rm(jar_dest) if File.exists? jar_dest
+#   
+#   FileUtils.copy("java_lib/jruby.jar", "jruby.jar")
+#   sh "jar uvf jruby.jar bin/ lib/ resources/"
+#   FileUtils.move("jruby.jar", jar_dest)
+# 
+#   sh "jarsigner -keystore jl_keystore build/fs.jar myself"
+# end

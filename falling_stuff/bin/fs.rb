@@ -6,8 +6,11 @@
 #  Created by Paulo Schneider on 2007-12-25.
 #  Copyright 2007 Jeek Labs. All rights reserved.
 # 
+$CLASSPATH << File.expand_path(File.dirname(__FILE__) + "/../java/lib/slick.jar")
+$CLASSPATH << File.expand_path(File.dirname(__FILE__) + "/../java/lib/lwjgl.jar")
+$LOAD_PATH << File.expand_path(File.dirname(__FILE__) + "/../lib")
 
-require "lib/falling_stuff"
+require "falling_stuff"
 
 container = Slick::AppGameContainer.new(GameWindow.new)
 container.set_display_mode(340, 440, false)

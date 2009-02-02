@@ -31,6 +31,6 @@ NEXT_SHAPE_Y = 160
 
 # Project
 #$:.unshift(File.dirname(__FILE__))
-require "lib/falling_stuff/game_window"
-require "lib/falling_stuff/board"
-require "lib/falling_stuff/shape"
+require "falling_stuff/game_window"
+require "falling_stuff/board"
+require "falling_stuff/shape"
