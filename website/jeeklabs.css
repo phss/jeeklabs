@@ -1,5 +1,5 @@
 body {
-	background-color: #fbf9ec;
+	background-color: #ff9ec;
 	font-family: Verdana;
 	text-align:center;
 }
@@ -8,10 +8,6 @@ body {
 	margin:0pt auto;
 	text-align:left;
 	width:720px;
-}
-
-#logo {
-	font-size: 80px;
 }
 
 #logo_headline {
@@ -23,6 +19,15 @@ body {
 #content {
 	margin-top: 50px;
 	font-size: 12px;
+}
+
+#game {
+	margin-top: 20px;
+}
+
+#game_title {
+	color: #404c43;
+	font-size: 14px;
 }
 
 #footer {
