@@ -1,0 +1,39 @@
+NAME="Binary Nights"
+BUILD_DIR="build"
+ 
+MAC_APP="#{NAME}.app"
+MAC_TEMPLATE="../utils/gosu/RubyGosu Deployment Template.app"
+ 
+WIN_APP=NAME.gsub(" ", "_")
+WIN_FMOD_LIB="..\\utils\\win\\fmod.dll"
+ 
+ 
+desc "Creates a Mac OS X executable"
+task :exec_mac do
+  mac_app_path = "#{BUILD_DIR}/#{MAC_APP}"
+  Dir.mkdir("#{BUILD_DIR}") unless File.exists? "#{BUILD_DIR}"
+  FileUtils.rm_rf(mac_app_path) if File.exists? mac_app_path
+  
+  FileUtils.cp_r(MAC_TEMPLATE, mac_app_path)
+  FileUtils.copy("bin/bn_dsl.rb", "#{mac_app_path}/Contents/Resources/main.rb")
+  FileUtils.copy("data/icons/mac.icns", "#{mac_app_path}/Contents/Resources/Gosu.icns")
+  FileUtils.cp_r("data", "#{mac_app_path}/Contents/Resources")
+  FileUtils.cp_r("lib", "#{mac_app_path}/Contents/Resources")
+end
+ 
+desc "Creates a Windows executable"
+task :exec_win do
+  win_app_path = "#{BUILD_DIR}/#{WIN_APP}"
+  Dir.mkdir("#{BUILD_DIR}") unless File.exists? "#{BUILD_DIR}"
+  FileUtils.rm_rf(win_app_path) if File.exists? win_app_path
+  Dir.mkdir(win_app_path)
+  
+  FileUtils.copy("bin/gosu_fs.rb", "#{win_app_path}/init.rb")
+  FileUtils.cp_r("resources", win_app_path)
+  FileUtils.cp_r("lib", win_app_path)
+  FileUtils.copy(WIN_FMOD_LIB, win_app_path)
+  
+  exec "rubyexe.bat"
+  #exec tar2rubyscript #{win_app_path}
+  #exec "rubyscript2exe --rubyscript2exe-rubyw #{win_app_path}/#{WIN_APP}.rb"
+end

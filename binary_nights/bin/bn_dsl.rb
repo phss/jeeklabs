@@ -27,8 +27,8 @@ tentacles = generate_tentacles(game, game.width/2, game.height)
 game.screen :game do
   with_representation(TentacleRepresentation.new(game, tentacles, MATCH.court))
   text_representation_for(MATCH.left_pad, PAD_TEXT, Gosu::black).with_input_control do
-     when_key('s') { move_up }
-     when_key('x') { move_down }
+     when_key(Gosu::KbUp)   { move_up }
+     when_key(Gosu::KbDown) { move_down }
   end
   text_representation_for(ai_pad, PAD_TEXT).will_always { react }
   
