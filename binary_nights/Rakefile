@@ -4,9 +4,7 @@ BUILD_DIR="build"
 MAC_APP="#{NAME}.app"
 MAC_TEMPLATE="../utils/gosu/RubyGosu Deployment Template.app"
  
-WIN_APP=NAME.gsub(" ", "_")
-WIN_FMOD_LIB="..\\utils\\win\\fmod.dll"
- 
+WIN_APP=NAME.gsub(" ", "_") 
  
 desc "Creates a Mac OS X executable"
 task :exec_mac do
@@ -28,12 +26,10 @@ task :exec_win do
   FileUtils.rm_rf(win_app_path) if File.exists? win_app_path
   Dir.mkdir(win_app_path)
   
-  FileUtils.copy("bin/gosu_fs.rb", "#{win_app_path}/init.rb")
-  FileUtils.cp_r("resources", win_app_path)
+  FileUtils.copy("bin/bn_dsl.rb", "#{win_app_path}/init.rb")
+  FileUtils.cp_r("data", win_app_path)
   FileUtils.cp_r("lib", win_app_path)
-  FileUtils.copy(WIN_FMOD_LIB, win_app_path)
   
-  exec "rubyexe.bat"
-  #exec tar2rubyscript #{win_app_path}
-  #exec "rubyscript2exe --rubyscript2exe-rubyw #{win_app_path}/#{WIN_APP}.rb"
+  exec tar2rubyscript #{win_app_path}
+  exec "rubyscript2exe --rubyscript2exe-rubyw #{win_app_path}/#{WIN_APP}.rb"
 end
