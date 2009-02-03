@@ -1,0 +1,48 @@
+body {
+	background-color: #fbf9ec;
+	font-family: Verdana;
+	text-align:center;
+}
+
+#stuff {
+	margin:0pt auto;
+	text-align:left;
+	width:720px;
+}
+
+#logo {
+	font-size: 80px;
+}
+
+#logo_headline {
+	margin-left: 50px;
+	color: #67603c;
+	font-size: 10px;
+}
+
+#content {
+	margin-top: 50px;
+	font-size: 12px;
+}
+
+#footer {
+	margin-top:14em;
+	color: #67603c;
+	font-size: 10px;
+	text-align:center;
+}
+
+dd {
+	text-align: justify;
+	margin-bottom: 30px
+}
+
+dt {
+	color: #404c43;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+a {
+	color: #67603c;
+}
