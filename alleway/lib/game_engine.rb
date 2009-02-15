@@ -8,8 +8,8 @@ end
 
 require "gosu"
 
-
 ENGINE_DIR = File.expand_path(File.dirname(__FILE__) + "/game_engine")
 IMAGES_DIR = File.expand_path(File.dirname(__FILE__) + "/../data/images")
 
 require ENGINE_DIR + "/game_window"
+require ENGINE_DIR + "/screen"

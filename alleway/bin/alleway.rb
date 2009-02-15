@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby -wKU
 
-require "lib/game_engine"
+require "lib/alleway"
 
 if __FILE__ == $PROGRAM_NAME
-  window = GameWindow.new("Alleway", 512, 480)
+  window = Engine::GameWindow.new("Alleway", 512, 480)
+  window.add_screen(IntroScreen)
   window.show
 end

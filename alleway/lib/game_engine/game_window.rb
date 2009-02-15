@@ -1,24 +1,27 @@
-class GameWindow < Gosu::Window
+module Engine
   
-  def initialize(name, width, height)
-    super(width, height, false)
-    self.caption = name
+  class GameWindow < Gosu::Window
     
-    @main_screen = Gosu::Image.new(self, IMAGES_DIR + "/main_screen.png", 0)
-  end
-  
-  def update
-  end
-
-  def draw
-    @main_screen.draw(0, 0, 0)
-  end
-  
-  def button_down(id)
-    case id
-    when Gosu::Button::KbEscape
-      exit
+    def initialize(name, width, height)
+      super(width, height, false)
+      self.caption = name
     end
-  end
+    
+    def add_screen(screen_name)
+      @current_screen = screen_name.new(self)
+    end
   
+    def update
+      @current_screen.update
+    end
+
+    def draw
+      @current_screen.draw
+    end
+  
+    def button_down(id)
+      @current_screen.button_down(id)
+    end
+    
+  end
 end

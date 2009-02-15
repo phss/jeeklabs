@@ -6,6 +6,11 @@ MAC_TEMPLATE="../utils/gosu/RubyGosu Deployment Template.app"
  
 WIN_APP=NAME.gsub(" ", "_") 
  
+desc "Play the game"
+task :play do
+  sh "ruby bin/alleway.rb"
+end 
+ 
 desc "Creates a Mac OS X executable"
 task :exec_mac do
   mac_app_path = "#{BUILD_DIR}/#{MAC_APP}"
