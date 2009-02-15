@@ -10,7 +10,7 @@ class IntroScreen < Engine::Screen
   end
   
   def button_down(id)
-    exit
+    @game_window.go_to("Game")
   end
   
 end

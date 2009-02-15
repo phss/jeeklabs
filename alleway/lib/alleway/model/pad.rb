@@ -3,8 +3,8 @@ class Pad
   attr_reader :x, :y
   
   def initialize
-    @x = 100
-    @y = 20
+    @x = 200
+    @y = 400
   end
 
   def move_left
