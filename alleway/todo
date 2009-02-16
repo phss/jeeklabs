@@ -1,3 +1,5 @@
 ✓ Draw main screen
 ✓ Create rake tasks to generate win and mac executables
-- item
+✓ Create Screen interface
+- Create game object interface
+- Create game object representations
