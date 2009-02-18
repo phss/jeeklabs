@@ -2,7 +2,7 @@ class GameScreen < Engine::Screen
   
   def initialize(game_window)
     @game_window = game_window
-    @pad = Pad.new
+    @pad = Pad.new(PAD_CONFIG)
   end
   
   def update

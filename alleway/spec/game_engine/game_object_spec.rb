@@ -52,14 +52,14 @@ describe Engine::GameObject do
       temp_obj.height.should == 20
     end
     
-    # it "should set object's position and dimension through array" do
-    #   temp_obj = TempObject.new
-    #   temp_obj.set_from_array([10, 20, 30, 40])
-    #   temp_obj.x.should == 10
-    #   temp_obj.y.should == 20
-    #   temp_obj.width.should == 30
-    #   temp_obj.height.should == 40
-    # end
+    it "should set object's position and dimension through config hash" do
+      temp_obj = TempObject.new
+      temp_obj.configure_with({:x => 10, :y => 20, :width => 30, :height => 40})
+      temp_obj.x.should == 10
+      temp_obj.y.should == 20
+      temp_obj.width.should == 30
+      temp_obj.height.should == 40
+    end
     
   end
   

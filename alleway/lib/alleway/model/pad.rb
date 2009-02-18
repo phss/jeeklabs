@@ -1,12 +1,9 @@
-class Pad
+class Pad < Engine::GameObject
   
-  attr_reader :x, :y
-  
-  def initialize
-    @x = 200
-    @y = 400
+  def initialize(config)
+    configure_with(config)
   end
-
+  
   def move_left
     @x -= 5
   end

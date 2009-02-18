@@ -1,7 +1,7 @@
 module Engine
   
   class GameObject
-    attr_reader :x, :y, :width, :height
+    attr_accessor :x, :y, :width, :height
   
     def initialize
       @x = 0
@@ -18,6 +18,12 @@ module Engine
     def dimension(width, height)
       @width = width
       @height = height
+    end
+    
+    # config_options is a hash that can take the following keys: :x, :y, :width, :height. 
+    # The key restriction is not being enforced.
+    def configure_with(config_options)
+      config_options.each { |attribute, value| eval "self.#{attribute} = #{value}" }
     end
   
     def collide?(obj)
