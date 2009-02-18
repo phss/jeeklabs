@@ -2,4 +2,8 @@
 ✓ Create rake tasks to generate win and mac executables
 ✓ Create Screen interface
 ✓ Create game object interface
-- Create game object representations
+✓ Create game_object_representation
+✓ Create update hooks/lambdas for the representation
+✓ Create QuadRepresentation and convert Pad to use it
+- Refactor GameScreen to update and draw representations
+- Create ImageRepresentation and use it for the intro screen
