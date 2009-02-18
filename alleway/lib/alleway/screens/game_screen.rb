@@ -8,7 +8,9 @@ class GameScreen < Engine::Screen
     pad = Engine::QuadRepresentation.new(@game_window, Pad.new(PAD_CONFIG), Gosu::white)
     pad.when_key(Gosu::Button::KbLeft) { move_left }
     pad.when_key(Gosu::Button::KbRight) { move_right }
-    return [pad]
+    
+    ball = Engine::QuadRepresentation.new(@game_window, Ball.new(BALL_CONFIG), Gosu::red)
+    return [pad, ball]
   end
   
   def button_down(id)

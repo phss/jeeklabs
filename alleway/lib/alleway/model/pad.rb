@@ -12,8 +12,4 @@ class Pad < Engine::GameObject
     @x += 5
   end
   
-  def draw
-    
-  end
-  
 end
