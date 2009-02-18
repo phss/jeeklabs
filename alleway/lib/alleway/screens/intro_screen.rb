@@ -2,11 +2,10 @@ class IntroScreen < Engine::Screen
   
   def initialize(game_window)
     super(game_window)
-    @intro_image = Gosu::Image.new(game_window, IMAGES_DIR + "/main_screen.png", 0)
   end
   
-  def draw
-    @intro_image.draw(0, 0, 0)
+  def initialize_representations
+    [Engine::ImageRepresentation.new(@game_window, Engine::GameObject.new, IMAGES_DIR + "/main_screen.png")]
   end
   
   def button_down(id)
