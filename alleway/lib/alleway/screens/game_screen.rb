@@ -10,6 +10,7 @@ class GameScreen < Engine::Screen
     pad.when_key(Gosu::Button::KbRight) { move_right }
     
     ball = Engine::QuadRepresentation.new(@game_window, Ball.new(BALL_CONFIG), Gosu::red)
+    ball.always { move }
     return [pad, ball]
   end
   
