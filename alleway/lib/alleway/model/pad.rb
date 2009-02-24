@@ -12,4 +12,8 @@ class Pad < Deflector
     @x += 5
   end
   
+  def deflection_modifier(ball)
+    (ball.x_center - self.x_center)/@width
+  end
+  
 end

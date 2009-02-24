@@ -5,14 +5,16 @@ class GameScreen < Engine::Screen
   end
   
   def initialize_representations
-    pad_obj = Pad.new(PAD_CONFIG)
-    pad = Engine::QuadRepresentation.new(@game_window, pad_obj, Gosu::white)
-    pad.when_key(Gosu::Button::KbLeft) { move_left }
-    pad.when_key(Gosu::Button::KbRight) { move_right }
+    pad = Pad.new(PAD_CONFIG)
+    ball = Ball.new(BALL_CONFIG, pad, Wall.new)
     
-    ball = Engine::QuadRepresentation.new(@game_window, Ball.new(BALL_CONFIG, pad_obj), Gosu::red)
-    ball.always { move }
-    return [pad, ball]
+    pad_representation = Engine::QuadRepresentation.new(@game_window, pad, Gosu::white)
+    pad_representation.when_key(Gosu::Button::KbLeft) { move_left }
+    pad_representation.when_key(Gosu::Button::KbRight) { move_right }
+    
+    ball_representation = Engine::QuadRepresentation.new(@game_window, ball, Gosu::red)
+    ball_representation.always { move }
+    return [pad_representation, ball_representation]
   end
   
   def button_down(id)

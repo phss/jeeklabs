@@ -9,5 +9,7 @@
 ✓ Create ImageRepresentation and use it for the intro screen
 ✓ Create Ball class
 ✓ Add ball movement and collision
-- Add wall deflectors
-- Refactor screen
+
+✓ Add wall deflectors
+✓ Refactor screen
+✓ Add adjustment to pad deflection

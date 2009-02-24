@@ -2,12 +2,9 @@ module Engine
   
   class GameObject
     attr_accessor :x, :y, :width, :height
-  
-    def initialize
-      @x = 0
-      @y = 0
-      @width = 0
-      @height = 0
+      
+    def initialize(config_options={:x => 0, :y => 0, :width => 0, :height => 0})
+      configure_with(config_options)
     end
   
     def at(x, y)
@@ -43,8 +40,8 @@ module Engine
       return intersection      
     end
   
-    def y_center
-      @y + (@height/2)
+    def x_center
+      @x + (@width/2)
     end
   
   end

@@ -1,7 +1,7 @@
 class Deflector < Engine::GameObject
   
-  def intialize
-    super()
+  def intialize(config_options={:x => 0, :y => 0, :width => 0, :height => 0})
+    super(config_options)
   end
   
   def deflect_and_adjust(ball)
@@ -13,6 +13,7 @@ class Deflector < Engine::GameObject
     else
       ball.velocity.x = -ball.velocity.x
     end
+    ball.velocity.adjust(deflection_modifier(ball))
   end
   
   protected

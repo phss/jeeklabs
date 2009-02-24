@@ -15,7 +15,7 @@ class Ball < Engine::GameObject
     configure_with(config)
     @deflectors = deflectors
     
-    @speed = 2
+    @speed = 5
     @velocity = Velocity.new(0.0, 1.0)
     @velocity.adjust(-0.2)
   end
