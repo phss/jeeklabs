@@ -8,4 +8,6 @@
 ✓ Refactor Screen to update and draw representations
 ✓ Create ImageRepresentation and use it for the intro screen
 ✓ Create Ball class
-- Add ball movement and collision
+✓ Add ball movement and collision
+- Add wall deflectors
+- Refactor screen

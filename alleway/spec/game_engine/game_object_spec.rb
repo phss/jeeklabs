@@ -63,53 +63,73 @@ describe Engine::GameObject do
     
   end
   
-  describe "(collisions)" do
+  describe "(collisions and intersections)" do
+    
+    def assert_intersection(obj, x, y, width, height)
+      obj.x.should == x
+      obj.y.should == y
+      obj.width.should == width
+      obj.height.should == height
+    end
     
     it "should not collide when not intersecting an object" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(100, 100, 20, 20)
-      temp_obj1.collide?(temp_obj2).should == false
-      temp_obj2.collide?(temp_obj1).should == false
+      temp_obj1.collide?(temp_obj2).should be_false
+      temp_obj2.collide?(temp_obj1).should be_false
+      temp_obj1.intersection(temp_obj2).should be_nil
+      temp_obj2.intersection(temp_obj1).should be_nil
     end
 
     it "should collide with itself" do
       temp_obj = StubGameObject.new(10, 10, 20, 20)
-      temp_obj.collide?(temp_obj).should == true
+      temp_obj.collide?(temp_obj).should be_true
+      assert_intersection(temp_obj.intersection(temp_obj), 10, 10, 20, 20)
     end
 
     it "should collide when intersecting through the left/right" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(20, 20, 50, 5)
-      temp_obj1.collide?(temp_obj2).should == true
-      temp_obj2.collide?(temp_obj1).should == true
+      temp_obj1.collide?(temp_obj2).should be_true
+      temp_obj2.collide?(temp_obj1).should be_true
+      assert_intersection(temp_obj1.intersection(temp_obj2), 20, 20, 10, 5)
+      assert_intersection(temp_obj2.intersection(temp_obj1), 20, 20, 10, 5)
     end
 
     it "should collide when intersecting through the left-top corner/right-bottom corner" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(20, 20, 50, 50)
-      temp_obj1.collide?(temp_obj2).should == true
-      temp_obj2.collide?(temp_obj1).should == true
+      temp_obj1.collide?(temp_obj2).should be_true
+      temp_obj2.collide?(temp_obj1).should be_true
+      assert_intersection(temp_obj1.intersection(temp_obj2), 20, 20, 10, 10)
+      assert_intersection(temp_obj2.intersection(temp_obj1), 20, 20, 10, 10)
     end
 
     it "should collide when intersecting through the top/bottom" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(20, 5, 5, 50)
-      temp_obj1.collide?(temp_obj2).should == true
-      temp_obj2.collide?(temp_obj1).should == true
+      temp_obj1.collide?(temp_obj2).should be_true
+      temp_obj2.collide?(temp_obj1).should be_true
+      assert_intersection(temp_obj1.intersection(temp_obj2), 20, 10, 5, 20)
+      assert_intersection(temp_obj2.intersection(temp_obj1), 20, 10, 5, 20)
     end
 
     it "should collide when intersecting through the right-top corner/left-bottom corner" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(20, 5, 30, 30)
-      temp_obj1.collide?(temp_obj2).should == true
-      temp_obj2.collide?(temp_obj1).should == true
+      temp_obj1.collide?(temp_obj2).should be_true
+      temp_obj2.collide?(temp_obj1).should be_true
+      assert_intersection(temp_obj1.intersection(temp_obj2), 20, 10, 10, 20)
+      assert_intersection(temp_obj2.intersection(temp_obj1), 20, 10, 10, 20)
     end 
 
     it "should collide when an object encompasses the other" do
       temp_obj1 = StubGameObject.new(10, 10, 20, 20)
       temp_obj2 = StubGameObject.new(5, 5, 100, 100)
-      temp_obj1.collide?(temp_obj2).should == true
-      temp_obj2.collide?(temp_obj1).should == true
+      temp_obj1.collide?(temp_obj2).should be_true
+      temp_obj2.collide?(temp_obj1).should be_true
+      assert_intersection(temp_obj1.intersection(temp_obj2), 10, 10, 20, 20)
+      assert_intersection(temp_obj2.intersection(temp_obj1), 10, 10, 20, 20)
     end 
     
   end

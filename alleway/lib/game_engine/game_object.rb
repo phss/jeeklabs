@@ -30,6 +30,18 @@ module Engine
       !(obj.x > (@x + @width)  || @x > (obj.x + obj.width) ||
         obj.y > (@y + @height) || @y > (obj.y + obj.height))
     end
+    
+    def intersection(obj)
+      return nil unless collide?(obj)
+      
+      intersection = GameObject.new # FIXME should create a rect class
+      # FIXME silly min/max bellow
+      intersection.x = [@x, obj.x].max
+      intersection.y = [@y, obj.y].max
+      intersection.width = [@x + @width, obj.x + obj.width].min - intersection.x
+      intersection.height = [@y + @height, obj.y + obj.height].min - intersection.y
+      return intersection      
+    end
   
     def y_center
       @y + (@height/2)

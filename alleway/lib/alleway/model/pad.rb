@@ -1,4 +1,4 @@
-class Pad < Engine::GameObject
+class Pad < Deflector
   
   def initialize(config)
     configure_with(config)

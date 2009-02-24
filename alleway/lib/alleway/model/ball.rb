@@ -9,15 +9,19 @@ end
 
 class Ball < Engine::GameObject
   
-  def initialize(config)
+  attr_reader :velocity
+  
+  def initialize(config, *deflectors)
     configure_with(config)
+    @deflectors = deflectors
+    
     @speed = 2
     @velocity = Velocity.new(0.0, 1.0)
     @velocity.adjust(-0.2)
   end
     
   def move
-    # @deflectors.each { |deflector| deflector.deflect_and_adjust(self) }
+    @deflectors.each { |deflector| deflector.deflect_and_adjust(self) }
     @x += @speed * @velocity.x
     @y += @speed * @velocity.y
   end
