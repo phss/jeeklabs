@@ -13,5 +13,7 @@
 ✓ Refactor screen
 ✓ Add adjustment to pad deflection
 ✓ Limit pad to screen
+✓ Add blocks
 
-- Add blocks
+- Create a level config, or something like it
+- Make the blocks break

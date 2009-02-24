@@ -13,7 +13,7 @@ class Ball < Engine::GameObject
   
   def initialize(config, *deflectors)
     configure_with(config)
-    @deflectors = deflectors
+    @deflectors = deflectors.flatten
     
     @speed = 5
     @velocity = Velocity.new(0.0, 1.0)
