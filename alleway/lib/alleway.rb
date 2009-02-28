@@ -6,6 +6,7 @@ require ALLEWAY_DIR + "/model/pad"
 require ALLEWAY_DIR + "/model/wall"
 require ALLEWAY_DIR + "/model/block"
 require ALLEWAY_DIR + "/model/ball"
+require ALLEWAY_DIR + "/model/level"
 require ALLEWAY_DIR + "/screens/intro_screen"
 require ALLEWAY_DIR + "/screens/game_screen"
 
@@ -14,5 +15,5 @@ WINDOW_WIDTH = 512
 WINDOW_HEIGHT = 480
 
 PAD_CONFIG = { :x => 200, :y => 400, :width => 100, :height => 20}
-BALL_CONFIG = { :x => 200, :y => 200, :width => 20, :height => 20}
+BALL_CONFIG = { :x => 200, :y => 200, :width => 15, :height => 15}
 BLOCK_DIMENSIONS = { :width => 80, :height => 40}

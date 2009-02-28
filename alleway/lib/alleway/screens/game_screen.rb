@@ -5,18 +5,27 @@ class GameScreen < Engine::Screen
   end
   
   def initialize_representations
-    pad = Pad.new(PAD_CONFIG)
-    block = Block.new(BLOCK_DIMENSIONS)
-    block.at(200, 40)
-    ball = Ball.new(BALL_CONFIG, pad, Wall.sections, block)
+    level = Level.new
+    representations = []
     
-    pad_representation = Engine::QuadRepresentation.new(@game_window, pad, Gosu::white)
-    pad_representation.when_key(Gosu::Button::KbLeft) { move_left }
-    pad_representation.when_key(Gosu::Button::KbRight) { move_right }
+    pad = Engine::QuadRepresentation.new(@game_window, level.pad, Gosu::white)
+    pad.when_key(Gosu::Button::KbLeft) { move_left }
+    pad.when_key(Gosu::Button::KbRight) { move_right }
+    representations << pad
     
-    ball_representation = Engine::QuadRepresentation.new(@game_window, ball, Gosu::red)
-    ball_representation.always { move }
-    return [pad_representation, ball_representation, Engine::QuadRepresentation.new(@game_window, block, Gosu::gray)]
+    ball = Engine::QuadRepresentation.new(@game_window, level.ball, Gosu::red)
+    ball.always { move }
+    representations << ball
+    
+    level.blocks.each do |block|
+      block.when_deflect do
+        level.ball.remove_deflector(block)
+        remove_representation_for(block)
+      end
+      representations << Engine::QuadRepresentation.new(@game_window, block, Gosu::gray)
+    end
+    
+    return representations.flatten
   end
   
   def button_down(id)

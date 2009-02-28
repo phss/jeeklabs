@@ -1,7 +1,7 @@
 Velocity = Struct.new(:x, :y) do
   def adjust(radian)
     xl = Math::cos(radian)*self.x - Math::sin(radian)*self.y
-    yl = Math::sin(radian)*self.x + Math::cos(radian)*self.y    
+    yl = Math::sin(radian)*self.x + Math::cos(radian)*self.y
     self.x = xl
     self.y = yl
   end
@@ -24,6 +24,10 @@ class Ball < Engine::GameObject
     @deflectors.each { |deflector| deflector.deflect_and_adjust(self) }
     @x += @speed * @velocity.x
     @y += @speed * @velocity.y
+  end
+  
+  def remove_deflector(deflector)
+    @deflectors.delete(deflector)
   end
   
 end

@@ -1,6 +1,8 @@
 module Engine
   
   class Engine::ObjectRepresentation
+    
+    attr_reader :game_object
 
     def initialize(game_window, game_object)
       @game_window = game_window

@@ -37,11 +37,15 @@ module Engine
       intersection.y = [@y, obj.y].max
       intersection.width = [@x + @width, obj.x + obj.width].min - intersection.x
       intersection.height = [@y + @height, obj.y + obj.height].min - intersection.y
-      return intersection      
+      return intersection
     end
-  
+
     def x_center
       @x + (@width/2)
+    end
+
+    def y_center
+      @y + (@height/2)
     end
   
   end

@@ -14,6 +14,9 @@
 ✓ Add adjustment to pad deflection
 ✓ Limit pad to screen
 ✓ Add blocks
+✓ Create a level config, or something like it
 
-- Create a level config, or something like it
-- Make the blocks break
+✓ Fix bouncing on the sides of the pad
+✓ Make the blocks break
+- Create a file format for the level
+- Transition between levels

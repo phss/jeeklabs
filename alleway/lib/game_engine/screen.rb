@@ -19,6 +19,10 @@ module Engine
     def draw
       @representations.each { |representation| representation.draw }
     end
+    
+    def remove_representation_for(object)
+      @representations.delete_if { |representation| representation.game_object == object }
+    end
   
     def button_down(id)
       # Do nothing

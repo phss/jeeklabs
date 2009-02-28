@@ -1,7 +1,7 @@
 class Pad < Deflector
   
   def initialize(config)
-    configure_with(config)
+    super(config)
   end
   
   def move_left
@@ -15,7 +15,7 @@ class Pad < Deflector
   end
   
   def deflection_modifier(ball)
-    (ball.x_center - self.x_center)/@width
+    (ball.x_center - self.x_center)/(1.5*@width)
   end
   
 end
