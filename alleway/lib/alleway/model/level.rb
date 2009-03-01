@@ -22,7 +22,7 @@ class Level
         column_index = 0
         line.split('').each do |char|
           if char.to_i > 0
-            block = Block.new({:x => column_index * BLOCK_DIMENSIONS[:width], :y => row_index * BLOCK_DIMENSIONS[:height]}.merge(BLOCK_DIMENSIONS))
+            block = Block.new({:x => column_index * (BLOCK_DIMENSIONS[:width]+3), :y => row_index * (BLOCK_DIMENSIONS[:height]+3)}.merge(BLOCK_DIMENSIONS))
             level.add_block(block)
             level.ball.add_deflector(block)
           end
