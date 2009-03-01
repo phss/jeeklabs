@@ -5,7 +5,7 @@ class GameScreen < Engine::Screen
   end
   
   def initialize_representations
-    level = Level.new
+    level = Level.from(LEVEL_DIR + "/level1.txt")
     representations = []
     
     pad = Engine::QuadRepresentation.new(@game_window, level.pad, Gosu::white)

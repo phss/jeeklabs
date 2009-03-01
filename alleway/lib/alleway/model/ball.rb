@@ -25,6 +25,10 @@ class Ball < Engine::GameObject
     @x += @speed * @velocity.x
     @y += @speed * @velocity.y
   end
+
+  def add_deflector(deflector)
+    @deflectors << deflector
+  end
   
   def remove_deflector(deflector)
     @deflectors.delete(deflector)

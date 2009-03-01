@@ -29,15 +29,7 @@ module Engine
     end
     
     def intersection(obj)
-      return nil unless collide?(obj)
-      
-      intersection = GameObject.new # FIXME should create a rect class
-      # FIXME silly min/max bellow
-      intersection.x = [@x, obj.x].max
-      intersection.y = [@y, obj.y].max
-      intersection.width = [@x + @width, obj.x + obj.width].min - intersection.x
-      intersection.height = [@y + @height, obj.y + obj.height].min - intersection.y
-      return intersection
+      return collide?(obj) ? Intersection.between(self, obj) : nil
     end
 
     def x_center

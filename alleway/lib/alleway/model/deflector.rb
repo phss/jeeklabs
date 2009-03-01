@@ -10,20 +10,15 @@ class Deflector < Engine::GameObject
     @collision_timeout -= 1 if @collision_timeout > 0
     return unless @collision_timeout.zero? && collide?(ball)
 
-    # FIXME refactor this logic
-    intersection_rect = intersection(ball)
-    if intersection_rect.width >= intersection_rect.height
-      if y_center < intersection_rect.y_center
-        ball.velocity.y = ball.velocity.y.abs
-      else
+    case intersection(ball).collistion_side_for(self)
+      when :top
         ball.velocity.y = -ball.velocity.y.abs
-      end
-    else
-      if x_center < intersection_rect.x_center
-        ball.velocity.x = ball.velocity.x.abs
-      else
+      when :bottom
+        ball.velocity.y = ball.velocity.y.abs
+      when :left
         ball.velocity.x = -ball.velocity.x.abs
-      end
+      when :right
+        ball.velocity.x = ball.velocity.x.abs
     end
     
     ball.velocity.adjust(deflection_modifier(ball))
