@@ -4,3 +4,4 @@ lib/weltmeister
 bin/
 tools/
 weltmeister.html
+.DS_Store
