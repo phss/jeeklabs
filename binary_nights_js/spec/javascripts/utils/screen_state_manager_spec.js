@@ -1,8 +1,9 @@
 describe("ScreenStateManager", function() {
-  var manager;
+  var manager, game;
 
   beforeEach(function() {
-    manager = new ScreenStateManager();
+    game = jasmine.createSpy("mock game");
+    manager = new ScreenStateManager(game);
   });
 
   describe("(configuration)", function() {
@@ -25,12 +26,14 @@ describe("ScreenStateManager", function() {
     });
 
     it("should switch to screen", function() {
-      var screenDef = { level: "blah" }
-      manager.add("some screen", screenDef);
+      var screen = { load: function(g) {} };
+      spyOn(screen, "load");
+      manager.add("some screen", screen);
 
       manager.switchTo("some screen");
 
-      expect(manager.currentScreen).toEqual(screenDef);
+      expect(manager.currentScreen).toEqual(screen);
+      expect(screen.load).toHaveBeenCalledWith(game);
     });
   });
 

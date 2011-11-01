@@ -7,6 +7,8 @@ ScreenStateManager = ig.Class.extend({
   currentScreen: null,
   _screens: {},
 
+  init: function(game) { this.game = game; },
+
   add: function(screenName, screenDefinition) {
     this._screens[screenName] = screenDefinition;
   },
@@ -16,6 +18,7 @@ ScreenStateManager = ig.Class.extend({
       throw "No screen with name " + screenName;
     }
     this.currentScreen = this._screens[screenName];
+    this.currentScreen.load(this.game);
   }
   
 });
