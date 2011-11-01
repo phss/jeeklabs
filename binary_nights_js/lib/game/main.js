@@ -3,37 +3,38 @@ ig.module(
 )
 .requires(
 	'impact.game',
-	'impact.font'
+	'impact.font',
+	'plugins.utils.screen_state_manager'
 )
 .defines(function(){
 
 MyGame = ig.Game.extend({
 	
-	// Load a font
-	font: new ig.Font( 'media/04b03.font.png' ),
+	screenManager: new ScreenStateManager(),
 	
 	
 	init: function() {
-		// Initialize your game here; bind keys etc.
+		this.screenManager.add("title", {
+			font: new ig.Font( 'media/04b03.font.png' ),
+
+			draw: function() { 								
+				var x = ig.system.width/2,
+					  y = ig.system.height/2;
+				
+				this.font.draw("Binary Nights", x, y, ig.Font.ALIGN.CENTER );
+		}});
+
+		this.screenManager.switchTo("title");
 	},
 	
 	update: function() {
-		// Update all entities and backgroundMaps
 		this.parent();
-		
-		// Add your own, additional update code here
 	},
 	
 	draw: function() {
-		// Draw all entities and backgroundMaps
 		this.parent();
-		
-		
-		// Add your own drawing code here
-		var x = ig.system.width/2,
-			y = ig.system.height/2;
-		
-		this.font.draw( 'It Works!', x, y, ig.Font.ALIGN.CENTER );
+
+		this.screenManager.currentScreen.draw();
 	}
 });
 
