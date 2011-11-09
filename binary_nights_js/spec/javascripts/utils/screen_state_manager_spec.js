@@ -35,6 +35,26 @@ describe("ScreenStateManager", function() {
       expect(manager.currentScreen).toEqual(screen);
       expect(screen.load).toHaveBeenCalledWith(game);
     });
+
+    it("should update current screen", function() {
+      var screen = { update: function() {} };
+      spyOn(screen, "update");
+      manager.currentScreen = screen;
+
+      manager.update();
+
+      expect(screen.update).toHaveBeenCalled();
+    });
+
+    it("should draw current screen", function() {
+      var screen = { draw: function() {} };
+      spyOn(screen, "draw");
+      manager.currentScreen = screen;
+
+      manager.draw();
+
+      expect(screen.draw).toHaveBeenCalled();
+    });
   });
 
 });

@@ -19,7 +19,11 @@ ScreenStateManager = ig.Class.extend({
     }
     this.currentScreen = this._screens[screenName];
     this.currentScreen.load(this.game);
-  }
+  },
+
+  update: function() { this.currentScreen.update(); },
+
+  draw: function() { this.currentScreen.draw(); }
   
 });
 

@@ -13,6 +13,19 @@ TitleScreen = Screen.extend({
   level: LevelTitle,
   font: new ig.Font( 'media/04b03.font.png' ),
 
+  load: function(game) {
+    this.parent(game);
+
+    ig.input.bind(ig.KEY.ENTER, 'go_to_game');
+
+  },
+
+  update: function() {
+    if (ig.input.pressed('go_to_game')) {
+      ig.screenManager.switchTo('game');
+    }    
+  },
+
   draw: function() {                
     var x = ig.system.width/2,
         y = ig.system.height/2;

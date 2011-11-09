@@ -11,7 +11,9 @@ describe("Screen", function() {
 
   it("should load level", function() {
     var game = { loadLevel: function() {} };
+    ig.input = { unbindAll: function() {} };
     spyOn(game, "loadLevel");
+    spyOn(ig.input, "unbindAll");
 
     screen.level = "some level";
     screen.load(game);

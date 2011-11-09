@@ -5,7 +5,8 @@ ig.module(
 	'impact.game',
 	'impact.font',
 	'plugins.utils.screen_state_manager',
-	'game.screens.title_screen'
+	'game.screens.title_screen',
+	'game.screens.game_screen'
 )
 .defines(function(){
 
@@ -14,22 +15,23 @@ MyGame = ig.Game.extend({
 	screenManager: null,
 	
 	init: function() {
-		this.screenManager = new ScreenStateManager(this);
-		this.screenManager.add("title", new TitleScreen());
+		ig.screenManager = new ScreenStateManager(this);
+		ig.screenManager.add("title", new TitleScreen());
+		ig.screenManager.add("game", new GameScreen());
 
-		this.screenManager.switchTo("title");
+		ig.screenManager.switchTo("title");
 	},
 	
 	update: function() {
 		this.parent();
 
-		this.screenManager.currentScreen.update();
+		ig.screenManager.update();
 	},
 	
 	draw: function() {
 		this.parent();
 
-		this.screenManager.currentScreen.draw();
+		ig.screenManager.draw();
 	}
 });
 
