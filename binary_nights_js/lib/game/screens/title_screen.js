@@ -30,7 +30,7 @@ TitleScreen = Screen.extend({
     var x = ig.system.width/2,
         y = ig.system.height/2;
         
-    this.font.draw("Binary Nights", x, y, ig.Font.ALIGN.CENTER );
+    this.font.draw("Binary Nights", x, y, ig.Font.ALIGN.CENTER);
   }
 });
 
